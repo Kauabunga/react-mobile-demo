@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "app-name": "animationTest",
+    "flux": true,
+    "styles-language": "less"
+  }
+}
