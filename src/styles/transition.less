@@ -1,0 +1,123 @@
+
+
+@import 'animation.less';
+@import 'mixin.less';
+
+
+@duration: 500ms;
+
+
+.route {
+
+
+    //INITIAL STATES
+    &.route-to-login.route-from-init {
+        .page-login {
+            .transform(translateY(0) scale(1) translateZ(100px));
+        }
+        .page-quickaccess, .page-home {
+            .transform(translateY(100%) translateZ(0px));
+        }
+    }
+    &.route-to-quickaccess.route-from-init {
+        .page-quickaccess {
+            .transform(translateY(0) scale(1) translateZ(100px));
+        }
+        .page-login {
+            .transform(translateY(0) scale(0.75) translateZ(0px));
+        }
+        .page-home {
+            .transform(translateY(100%) translateZ(100px));
+        }
+    }
+    &.route-to-home.route-from-init {
+        .page-home {
+            .transform(translateY(0) scale(1) translateZ(100px));
+        }
+        .page-quickaccess, .page-login {
+            .transform(translateY(0) scale(0.75) translateZ(0px));
+        }
+    }
+
+
+
+    //TO Quickaccess
+    //      only from login
+    &.route-to-quickaccess.route-from-login {
+         .page-quickaccess {
+             .transform(translateY(0) translateZ(100px));
+         }
+
+         .page-login {
+             .transform(scale(0.75) translateZ(0px));
+         }
+         .page-home {
+             .transform(translateY(100%) translateZ(0px));
+         }
+     }
+
+    //TO Login
+    //      from quickaccess or home
+    &.route-to-login.route-from-quickaccess {
+
+        .page-login {
+            .transform(translateY(0) scale(1) translateZ(100px));
+        }
+
+        .page-quickaccess {
+            .transform(translateY(100%) translateZ(100px));
+        }
+
+        .page-home {
+            .transform(translateY(100%) translateZ(0px));
+        }
+    }
+    &.route-to-login.route-from-home {
+        .page-login {
+            .transform(translateY(0) scale(1) translateZ(100px));
+        }
+        .page-quickaccess, .page-home {
+            .transform(translateY(100%) translateZ(0px));
+        }
+    }
+
+
+
+    //TO home
+    //      from quickaccess / login
+    &.route-to-home.route-from-quickaccess {
+        .page-home {
+            .transform(translateY(0) translateZ(200px));
+        }
+        .page-quickaccess {
+            .transform(translateY(0) scale(0.75) translateZ(100px));
+        }
+        .page-login {
+            .transform(translateY(0) scale(0.75) translateZ(0px));
+        }
+    }
+    &.route-to-home.route-from-login {
+        .page-home {
+            .transform(translateY(0) translateZ(200px));
+        }
+        .page-quickaccess {
+            .transform(translateY(100%) scale(0.75) translateZ(100px));
+        }
+        .page-login {
+            .transform(translateY(0) scale(0.75) translateZ(0px));
+        }
+    }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+

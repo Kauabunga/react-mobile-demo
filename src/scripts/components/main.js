@@ -8,22 +8,25 @@ var { Route, RouteHandler, Link } = Router;
 
 var content = document.getElementById('content');
 
+var RouteLogin = require('./routes/RouteLogin');
+var RouteQuickaccess = require('./routes/RouteQuickaccess');
+var RouteHome = require('./routes/RouteHome');
 
-var Login = require('./Login');
-var Quickaccess = require('./Quickaccess');
-var Home = require('./Home');
+
 
 var Routes = (
-  <Route handler={ReactWebpackRound2App}>
-    <Route name="login" handler={Login}/>
-    <Route name="quickaccess" handler={Quickaccess}/>
+    <Route handler={ReactWebpackRound2App}>
 
-    <Route name="home" path="/" handler={Home}/>
-  </Route>
+        <Route name="login" handler={RouteLogin}/>
+        <Route name="quickaccess" handler={RouteQuickaccess}/>
+
+        <Route name="home" path="/" handler={RouteHome}/>
+
+    </Route>
 );
 
 Router.run(Routes, function (Handler) {
-  React.render(<Handler/>, content);
+    React.render(<Handler/>, content);
 });
 
 
