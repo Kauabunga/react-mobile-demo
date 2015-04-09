@@ -2,7 +2,9 @@
 
 var cookie = require('react-cookie');
 
-
+/**
+ *
+ */
 class AuthService {
 
     constructor(){

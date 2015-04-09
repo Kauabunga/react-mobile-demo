@@ -11,8 +11,9 @@ var content = document.getElementById('content');
 var RouteLogin = require('./routes/RouteLogin');
 var RouteQuickaccess = require('./routes/RouteQuickaccess');
 var RouteHome = require('./routes/RouteHome');
+var RouteSettings = require('./routes/RouteSettings');
 
-
+//TODO this is all somewhat redundant with pre-rendered routes?
 
 var Routes = (
     <Route handler={ReactWebpackRound2App}>
@@ -21,6 +22,7 @@ var Routes = (
         <Route name="quickaccess" handler={RouteQuickaccess}/>
 
         <Route name="home" path="/" handler={RouteHome}/>
+        <Route name="settings" handler={RouteSettings}/>
 
     </Route>
 );

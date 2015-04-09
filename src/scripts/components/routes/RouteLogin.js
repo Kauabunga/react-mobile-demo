@@ -19,6 +19,10 @@ var eventInboundLoginCorrect        = 'loginCorrect';
 var eventInboundLoginIncorrect      = 'loginIncorrect';
 
 
+/**
+ *
+ * @type {*|Function}
+ */
 var RouteLogin = React.createClass({
 
     contextTypes: {

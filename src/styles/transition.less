@@ -5,115 +5,267 @@
 
 
 @duration: 500ms;
+@delay: 100ms;
 
 
 .route {
 
 
-    //INITIAL STATES
-    &.route-to-login.route-from-init {
-        .page-login {
-            .transform(translateY(0) scale(1) translateZ(100px));
-        }
-        .page-quickaccess, .page-home {
-            .transform(translateY(100%) translateZ(0px));
-        }
-    }
-    &.route-to-quickaccess.route-from-init {
-        .page-quickaccess {
-            .transform(translateY(0) scale(1) translateZ(100px));
-        }
-        .page-login {
-            .transform(translateY(0) scale(0.75) translateZ(0px));
-        }
-        .page-home {
-            .transform(translateY(100%) translateZ(100px));
-        }
-    }
-    &.route-to-home.route-from-init {
-        .page-home {
-            .transform(translateY(0) scale(1) translateZ(100px));
-        }
-        .page-quickaccess, .page-login {
-            .transform(translateY(0) scale(0.75) translateZ(0px));
-        }
+    -webkit-transform-style: flat;
+    transform-style: flat;
+
+    overflow: hidden;
+    overflow-scrolling: touch;
+
+    position: absolute;
+
+    .page {
+
+        .transition(transform @duration ease @delay);
+
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #eee;
+
+
+
+        &.page-login { z-index: 111; .transform(translateZ(0)); }
+        &.page-quickaccess { z-index: 222; .transform(translateZ(0));}
+        &.page-home { z-index: 333;  .transform(translateZ(0));}
+        &.page-settings { z-index: 444; .transform(translateZ(0));}
+
     }
 
+
+    //INITIAL STATES - default states also?
+    &.route-to-login.route-from-init {
+        .page-login { .transform(translateY(0) scale(1)); }
+
+        .page-quickaccess { .transform(translateY(100%)); }
+        .page-home { .transform(translateY(100%)); }
+        .page-settings { .transform(translateX(100%)); }
+    }
+    &.route-to-quickaccess.route-from-init {
+        .page-quickaccess { .transform(translateY(0) scale(1)); }
+
+        .page-login { .transform(translateY(0) scale(0.75)); }
+        .page-home { .transform(translateY(100%)); }
+        .page-settings { .transform(translateX(100%)); }
+    }
+    &.route-to-home.route-from-init {
+        .page-home { .transform(translateY(0) scale(1)); }
+
+        .page-settings { .transform(translateX(100%)); }
+        .page-quickaccess { .transform(translateY(0) scale(0.75)); }
+        .page-login { .transform(translateY(0) scale(0.75)); }
+    }
+    &.route-to-settings.route-from-init {
+        .page-settings { .transform(translateX(0)); }
+
+        .page-home { .transform(translateX(-40%)); }
+        .page-quickaccess { .transform(translateY(0) scale(0.75)); }
+        .page-login { .transform(translateY(0) scale(0.75)); }
+    }
 
 
     //TO Quickaccess
     //      only from login
     &.route-to-quickaccess.route-from-login {
-         .page-quickaccess {
-             .transform(translateY(0) translateZ(100px));
-         }
-
-         .page-login {
-             .transform(scale(0.75) translateZ(0px));
-         }
-         .page-home {
-             .transform(translateY(100%) translateZ(0px));
-         }
+        //TO
+        .page-quickaccess { .transform(translateY(0)); }
+        //FROM
+        .page-login { .transform(scale(0.75)); }
+        //INACTIVE
+        .page-home { .transform(translateY(100%)); }
+        .page-settings { .transform(translateX(100%)); }
      }
 
     //TO Login
     //      from quickaccess or home
     &.route-to-login.route-from-quickaccess {
-
-        .page-login {
-            .transform(translateY(0) scale(1) translateZ(100px));
-        }
-
-        .page-quickaccess {
-            .transform(translateY(100%) translateZ(100px));
-        }
-
-        .page-home {
-            .transform(translateY(100%) translateZ(0px));
-        }
+        //TO
+        .page-login { .transform(translateY(0) scale(1)); }
+        //FROM
+        .page-quickaccess { .transform(translateY(100%)); }
+        //INACTIVE
+        .page-home { .transform(translateY(100%)); }
+        .page-settings { .transform(translateX(100%)); }
     }
     &.route-to-login.route-from-home {
-        .page-login {
-            .transform(translateY(0) scale(1) translateZ(100px));
-        }
-        .page-quickaccess, .page-home {
-            .transform(translateY(100%) translateZ(0px));
-        }
+        .page-login { .transform(translateY(0) scale(1)); }
+
+        .page-home { .transform(translateY(100%)); }
+
+        .page-quickaccess { .transform(translateY(100%)); }
+        .page-settings { .transform(translateX(100%)); }
     }
 
 
 
     //TO home
-    //      from quickaccess / login
+    //      from quickaccess / login / settings
     &.route-to-home.route-from-quickaccess {
-        .page-home {
-            .transform(translateY(0) translateZ(200px));
-        }
-        .page-quickaccess {
-            .transform(translateY(0) scale(0.75) translateZ(100px));
-        }
-        .page-login {
-            .transform(translateY(0) scale(0.75) translateZ(0px));
-        }
+        .page-home { .transform(translateY(0) translateZ(200px)); }
+
+        .page-quickaccess { .transform(translateY(0) scale(0.75)); }
+
+        .page-login { .transform(translateY(0) scale(0.75)); }
+        .page-settings { .transform(translateX(100%)); }
     }
     &.route-to-home.route-from-login {
-        .page-home {
-            .transform(translateY(0) translateZ(200px));
-        }
-        .page-quickaccess {
-            .transform(translateY(100%) scale(0.75) translateZ(100px));
-        }
-        .page-login {
-            .transform(translateY(0) scale(0.75) translateZ(0px));
-        }
+        .page-home { .transform(translateY(0)); }
+
+        .page-login { .transform(translateY(0) scale(0.75)); }
+
+        .page-quickaccess { .transform(translateY(100%) scale(0.75)); }
+        .page-settings { .transform(translateX(100%)); }
+    }
+    &.route-to-home.route-from-settings {
+        .page-home { .transform(translateX(0)); }
+
+        .page-settings { .transform(translateX(100%)); }
+
+        .page-quickaccess { .transform(translateY(0) scale(0.75)); }
+        .page-login { .transform(translateY(0) scale(0.75)); }
+
+    }
+
+
+
+    //TO settings
+    //      from home
+    &.route-to-settings.route-from-home {
+        .page-settings { .transform(translateX(0)); }
+
+        .page-home { .transform(translateX(-40%)); }
+
+        .page-quickaccess { .transform(translateY(0) scale(0.75)); }
+        .page-login { .transform(translateY(0) scale(0.75)); }
+
     }
 
 
 
 
 
+    //WITH Z TRANSLATIONS --- was dead? need z-index?
+    //WITH Z TRANSLATIONS --- was dead? need z-index?
+    //WITH Z TRANSLATIONS --- was dead? need z-index?
+    //WITH Z TRANSLATIONS --- was dead? need z-index?
+    //WITH Z TRANSLATIONS --- was dead? need z-index?
 
 
+
+//    //INITIAL STATES - default states also?
+//    &.route-to-login.route-from-init {
+//        .page-login { .transform(translateY(0) scale(1) translateZ(0px)); }
+//
+//        .page-quickaccess { .transform(translateY(100%) translateZ(100px)); }
+//        .page-home { .transform(translateY(100%) translateZ(200px)); }
+//        .page-settings { .transform(translateX(100%) translateZ(300px)); }
+//    }
+//    &.route-to-quickaccess.route-from-init {
+//        .page-quickaccess { .transform(translateY(0) scale(1) translateZ(100px)); }
+//
+//        .page-login { .transform(translateY(0) scale(0.75) translateZ(0px)); }
+//        .page-home { .transform(translateY(100%) translateZ(200px)); }
+//        .page-settings { .transform(translateX(100%) translateZ(300px)); }
+//    }
+//    &.route-to-home.route-from-init {
+//        .page-home { .transform(translateY(0) scale(1) translateZ(100px)); }
+//
+//        .page-settings { .transform(translateX(100%) translateZ(300px)); }
+//        .page-quickaccess { .transform(translateY(0) scale(0.75) translateZ(100px)); }
+//        .page-login { .transform(translateY(0) scale(0.75) translateZ(0px)); }
+//    }
+//    &.route-to-settings.route-from-init {
+//        .page-settings { .transform(translateX(0) translateZ(300px)); }
+//
+//        .page-home { .transform(translateX(-40%) translateZ(200px)); }
+//        .page-quickaccess { .transform(translateY(0) scale(0.75) translateZ(100px)); }
+//        .page-login { .transform(translateY(0) scale(0.75) translateZ(0px)); }
+//    }
+//
+//
+//    //TO Quickaccess
+//    //      only from login
+//    &.route-to-quickaccess.route-from-login {
+//        //TO
+//        .page-quickaccess { .transform(translateY(0) translateZ(100px)); }
+//        //FROM
+//        .page-login { .transform(scale(0.75) translateZ(0px)); }
+//        //INACTIVE
+//        .page-home { .transform(translateY(100%) translateZ(200px)); }
+//        .page-settings { .transform(translateX(100%) translateZ(300px)); }
+//     }
+//
+//    //TO Login
+//    //      from quickaccess or home
+//    &.route-to-login.route-from-quickaccess {
+//        //TO
+//        .page-login { .transform(translateY(0) scale(1) translateZ(0px)); }
+//        //FROM
+//        .page-quickaccess { .transform(translateY(100%) translateZ(100px)); }
+//        //INACTIVE
+//        .page-home { .transform(translateY(100%) translateZ(200px)); }
+//        .page-settings { .transform(translateX(100%) translateZ(300px)); }
+//    }
+//    &.route-to-login.route-from-home {
+//        .page-login { .transform(translateY(0) scale(1) translateZ(100px)); }
+//
+//        .page-home { .transform(translateY(100%) translateZ(200px)); }
+//
+//        .page-quickaccess { .transform(translateY(100%) translateZ(0px)); }
+//        .page-settings { .transform(translateX(100%) translateZ(300px)); }
+//    }
+//
+//
+//
+//    //TO home
+//    //      from quickaccess / login / settings
+//    &.route-to-home.route-from-quickaccess {
+//        .page-home { .transform(translateY(0) translateZ(200px)); }
+//
+//        .page-quickaccess { .transform(translateY(0) scale(0.75) translateZ(100px)); }
+//
+//        .page-login { .transform(translateY(0) scale(0.75) translateZ(0px)); }
+//        .page-settings { .transform(translateX(100%) translateZ(300px)); }
+//    }
+//    &.route-to-home.route-from-login {
+//        .page-home { .transform(translateY(0) translateZ(200px)); }
+//
+//        .page-login { .transform(translateY(0) scale(0.75) translateZ(0px)); }
+//
+//        .page-quickaccess { .transform(translateY(100%) scale(0.75) translateZ(100px)); }
+//        .page-settings { .transform(translateX(100%) translateZ(300px)); }
+//    }
+//    &.route-to-home.route-from-settings {
+//        .page-home { .transform(translateX(0) translateZ(200px)); }
+//
+//        .page-settings { .transform(translateX(100%) translateZ(300px)); }
+//
+//        .page-quickaccess { .transform(translateY(0) scale(0.75) translateZ(100px)); }
+//        .page-login { .transform(translateY(0) scale(0.75) translateZ(0px)); }
+//
+//    }
+//
+//
+//
+//    //TO settings
+//    //      from home
+//    &.route-to-settings.route-from-home {
+//        .page-settings { .transform(translateX(0) translateZ(300px)); }
+//
+//        .page-home { .transform(translateX(-40%) translateZ(200px)); }
+//
+//        .page-quickaccess { .transform(translateY(0) scale(0.75) translateZ(100px)); }
+//        .page-login { .transform(translateY(0) scale(0.75) translateZ(0px)); }
+//
+//    }
 
 }
 

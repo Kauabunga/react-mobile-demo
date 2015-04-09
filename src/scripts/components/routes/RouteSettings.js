@@ -9,7 +9,7 @@ var { Route, RouteHandler, Link } = Router;
  *
  * @type {*|Function}
  */
-var RouteHome = React.createClass({
+var RouteSettings = React.createClass({
 
 
     getInitialState: function () {
@@ -27,13 +27,12 @@ var RouteHome = React.createClass({
     render: function () {
         return (
             <div>
-                <p>Content for Home</p>
-                <Link to="login">Go Login</Link>
-                <Link to="settings">Go Settings</Link>
+                <p>Content for Settings</p>
+                <Link to="home">Go Home</Link>
             </div>
         );
     }
 });
 
-module.exports = RouteHome;
+module.exports = RouteSettings;
 

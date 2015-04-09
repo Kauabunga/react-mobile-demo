@@ -5,6 +5,10 @@ var Dispatcher = require('flux').Dispatcher;
 var { TextField, RaisedButton } = require('material-ui');
 
 
+/**
+ *
+ * @type {*|Function}
+ */
 var FormPreviousLogin = React.createClass({
 
     propTypes: {

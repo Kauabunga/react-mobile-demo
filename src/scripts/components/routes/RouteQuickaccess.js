@@ -17,10 +17,13 @@ var eventOutboundPinComplete    = 'pinComplete';
 var eventOutboundPinForgot      = 'pinForgot';
 var eventInboundPinIncorrect    = 'pinIncorrect';
 var eventInboundPinCorrect      = 'pinCorrect';
-var eventInboundPinReset      = 'pinReset';
+var eventInboundPinReset        = 'pinReset';
 
 
-
+/**
+ *
+ * @type {*|Function}
+ */
 var RouteQuickaccess = React.createClass({
 
     contextTypes: {

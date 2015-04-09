@@ -8,6 +8,7 @@ var { Route, RouteHandler, Link } = Router;
 var RouteHome = require('./routes/RouteHome');
 var RouteLogin = require('./routes/RouteLogin');
 var RouteQuickaccess = require('./routes/RouteQuickaccess');
+var RouteSettings = require('./routes/RouteSettings');
 var AuthService = require('./auth/AuthService');
 
 
@@ -39,8 +40,47 @@ var ReactWebpackRound2App = React.createClass({
 
         //TODO also need to perform an async login check every route change
 
-
     },
+
+    getInitialState: function(){
+
+        //TODO going to turn into the same mess the css is in....
+        //      need states like inactive-login, inactive-quickaccess for each screen
+
+        return {
+            transition: {
+                home: {
+                    active: {
+                        transform: 'translate3d(0, 0, 333px)'
+                    },
+                    inactive: {
+                        transform: 'translate3d(0, 100%, 333px)'
+                    }
+                },
+                login: {
+                    active: {
+                        transform: 'translate3d(0, 0, 111px) scale(1)'
+                    },
+                    inactive: {
+                        transform: 'translate3d(0, 0, 111px) scale(0.75)'
+                    }
+                },
+                quickaccess: {
+                    active: {
+                        transform: 'translate3d(0, 0, 222px) scale(1)'
+                    },
+                    inactive: {
+                        transform: 'translate3d(0, 0, 222px) scale(0.75)'
+                    }
+                },
+                settings: {
+                    active: {},
+                    inactive: {}
+                }
+            }
+        };
+    },
+
 
     getRouteDepth: function getRouteDepth() {
         return this.context.routeDepth;
@@ -52,6 +92,8 @@ var ReactWebpackRound2App = React.createClass({
 
         var previousRouteName = this.previousRouteName || 'init';
         this.previousRouteName = routeName;
+
+
 
         return (
             <div className={'route route-to-' + routeName + ' route-from-' + previousRouteName}>
@@ -66,6 +108,10 @@ var ReactWebpackRound2App = React.createClass({
 
                 <div className="page page-quickaccess">
                     <RouteQuickaccess isActive={this.context.router.isActive('quickaccess')} />
+                </div>
+
+                <div className="page page-settings">
+                    <RouteSettings isActive={this.context.router.isActive('settings')} />
                 </div>
 
             </div>
