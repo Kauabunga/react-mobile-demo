@@ -15,6 +15,28 @@ var RouteSettings = require('./routes/RouteSettings');
 
 //TODO this is all somewhat redundant with pre-rendered routes?
 
+
+var WebWorker = require('worker!./webworker/webworker');
+var worker = new WebWorker();
+
+console.log(worker);
+
+worker.onmessage = function(asdf){
+    console.log('asdf', asdf);
+
+    setTimeout(() => {
+        worker.postMessage(['mooo']);
+    }, 200);
+};
+
+
+
+worker.postMessage(['mooo']);
+
+
+
+
+
 var Routes = (
     <Route handler={ReactWebpackRound2App}>
 

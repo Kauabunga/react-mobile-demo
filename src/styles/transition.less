@@ -10,10 +10,6 @@
 
 .route {
 
-
-    -webkit-transform-style: flat;
-    transform-style: flat;
-
     overflow: hidden;
     overflow-scrolling: touch;
 
@@ -21,7 +17,8 @@
 
     .page {
 
-        .transition(transform @duration ease @delay);
+        .transition(all @duration ease @delay);
+//        .transition(transform @duration ease);
 
         width: 100%;
         height: 100%;
@@ -33,10 +30,10 @@
 
 
 
-        &.page-login { z-index: 111; .transform(translateZ(0)); }
-        &.page-quickaccess { z-index: 222; .transform(translateZ(0));}
-        &.page-home { z-index: 333;  .transform(translateZ(0));}
-        &.page-settings { z-index: 444; .transform(translateZ(0));}
+        &.page-login { z-index: 111; }
+        &.page-quickaccess { z-index: 222; }
+        &.page-home { z-index: 333; }
+        &.page-settings { z-index: 444; }
 
     }
 
