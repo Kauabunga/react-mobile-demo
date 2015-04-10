@@ -3,6 +3,7 @@
 var React = require('react/addons');
 var Router = require('react-router');
 var { Route, RouteHandler, Link } = Router;
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 
 var RouteHome = require('./routes/RouteHome');
@@ -13,10 +14,11 @@ var AuthService = require('./auth/AuthService');
 
 
 
-require('styles/transition.less');
+//require('styles/transition.less');
+
 require('styles/main.css');
 require('styles/material.less');
-
+require('./auth/FormQuickaccess.less');
 
 (window !== window.top ? window.top : window).React = React;
 
@@ -43,42 +45,7 @@ var ReactWebpackRound2App = React.createClass({
     },
 
     getInitialState: function(){
-
-        //TODO going to turn into the same mess the css is in....
-        //      need states like inactive-login, inactive-quickaccess for each screen
-
-        return {
-            transition: {
-                home: {
-                    active: {
-                        transform: 'translate3d(0, 0, 333px)'
-                    },
-                    inactive: {
-                        transform: 'translate3d(0, 100%, 333px)'
-                    }
-                },
-                login: {
-                    active: {
-                        transform: 'translate3d(0, 0, 111px) scale(1)'
-                    },
-                    inactive: {
-                        transform: 'translate3d(0, 0, 111px) scale(0.75)'
-                    }
-                },
-                quickaccess: {
-                    active: {
-                        transform: 'translate3d(0, 0, 222px) scale(1)'
-                    },
-                    inactive: {
-                        transform: 'translate3d(0, 0, 222px) scale(0.75)'
-                    }
-                },
-                settings: {
-                    active: {},
-                    inactive: {}
-                }
-            }
-        };
+        return {};
     },
 
 
@@ -93,29 +60,36 @@ var ReactWebpackRound2App = React.createClass({
         var previousRouteName = this.previousRouteName || 'init';
         this.previousRouteName = routeName;
 
-
-
+        //TODO bring back css transition handler
         return (
-            <div className={'route route-to-' + routeName + ' route-from-' + previousRouteName}>
-
-                <div className="page page-home">
-                    <RouteHome isActive={this.context.router.isActive('home')} />
-                </div>
-
-                <div className="page page-login">
-                    <RouteLogin isActive={this.context.router.isActive('login')} />
-                </div>
-
-                <div className="page page-quickaccess">
-                    <RouteQuickaccess isActive={this.context.router.isActive('quickaccess')} />
-                </div>
-
-                <div className="page page-settings">
-                    <RouteSettings isActive={this.context.router.isActive('settings')} />
-                </div>
-
-            </div>
+            <ReactCSSTransitionGroup transitionName="fade" className={'route route-to-' + routeName + ' route-from-' + previousRouteName}>
+                <RouteHandler key={routePath} />
+            </ReactCSSTransitionGroup>
         );
+
+        //return (
+        //    <div className={'route route-to-' + routeName + ' route-from-' + previousRouteName}>
+        //
+        //        <RouteHandler key={path} />
+        //
+        //        <div className="page page-home">
+        //            <RouteHome isActive={this.context.router.isActive('home')} />
+        //        </div>
+        //
+        //        <div className="page page-login">
+        //            <RouteLogin isActive={this.context.router.isActive('login')} />
+        //        </div>
+        //
+        //        <div className="page page-quickaccess">
+        //            <RouteQuickaccess isActive={this.context.router.isActive('quickaccess')} />
+        //        </div>
+        //
+        //        <div className="page page-settings">
+        //            <RouteSettings isActive={this.context.router.isActive('settings')} />
+        //        </div>
+        //
+        //    </div>
+        //);
     }
 });
 

@@ -5,7 +5,6 @@ var Dispatcher = require('flux').Dispatcher;
 var { FlatButton } = require('material-ui');
 
 
-require('./FormQuickaccess.less');
 
 
 /**

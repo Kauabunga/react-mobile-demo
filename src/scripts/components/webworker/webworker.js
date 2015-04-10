@@ -2,22 +2,22 @@
 
 
 var React = require('react');
-var RouteLogin = require('../routes/RouteLogin');
 
-onmessage = function(event) {
+var routes = {
+    RouteLogin: require('../routes/RouteLogin'),
+    RouteQuickaccess: require('../routes/RouteQuickaccess'),
+    RouteHome: require('../routes/RouteHome'),
+    RouteSettings: require('../routes/RouteSettings')
+};
 
-    console.log(RouteLogin);
+onmessage = function (message) {
+    console.log('message', message.data[0]);
 
-    var newLogin = new RouteLogin();
+    var newRoute = new routes[message.data[0]]();
+    var newRouteReactRender = newRoute.render();
+    var newRouteHtmlRender = React.renderToString(newRouteReactRender);
 
-    var newLoginRender = newLogin.render();
-
-    var render = React.renderToString(newLoginRender);
-
-    console.log(render);
-
-    postMessage(['moooo']);
-
+    postMessage([newRouteHtmlRender]);
 };
 
 

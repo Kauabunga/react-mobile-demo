@@ -20,6 +20,24 @@ html, body {
     height: 100%;
 
     color: #111;
+}
 
 
+
+
+.fade-enter {
+    transition: all 500ms ease;
+    opacity: 0;
+}
+.fade-enter-active {
+    opacity: 1;
+}
+
+
+.fade-leave {
+    transition: all 500ms ease;
+    opacity: 1;
+}
+.fade-leave-active {
+    opacity: 0;
 }

@@ -11,7 +11,6 @@ var FormQuickaccess = require('../auth/FormQuickaccess');
 var dispatcher = require('../../dispatcher/ReactWebpackRound2AppDispatcher');
 
 
-
 var eventNamespace              = 'FormQuickaccess';
 var eventOutboundPinComplete    = 'pinComplete';
 var eventOutboundPinForgot      = 'pinForgot';

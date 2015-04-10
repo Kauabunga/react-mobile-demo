@@ -19,19 +19,23 @@ var RouteSettings = require('./routes/RouteSettings');
 var WebWorker = require('worker!./webworker/webworker');
 var worker = new WebWorker();
 
-console.log(worker);
 
-worker.onmessage = function(asdf){
-    console.log('asdf', asdf);
+var beforePost;
+
+worker.onmessage = function(render){
+
+
+    console.log('login render time: ', Date.now() - beforePost,  render.data[0]);
 
     setTimeout(() => {
+        beforePost = Date.now();
         worker.postMessage(['mooo']);
-    }, 200);
+    }, 50);
 };
 
 
-
-worker.postMessage(['mooo']);
+beforePost = Date.now();
+//worker.postMessage(['mooo']);
 
 
 
