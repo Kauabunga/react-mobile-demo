@@ -48,8 +48,8 @@ var FormPreviousLogin = React.createClass({
         for (var i=0; i < this.props.previousLogins.length; i++) {
             logins.push(
 
-                <RaisedButton onClick={this.login.bind(this, this.props.previousLogins[i])}
-                    key={this.props.previousLogins[i]} label={this.props.previousLogins[i]} />
+                <button onClick={this.login.bind(this, this.props.previousLogins[i])}
+                    key={this.props.previousLogins[i]} >{this.props.previousLogins[i]}</button>
 
             );
         }

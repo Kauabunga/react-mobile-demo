@@ -56,14 +56,12 @@ var FormLogin = React.createClass({
 
     render: function () {
         return (
-            <form onSubmit={this.login} noValidate={true}>
-                <TextField
+            <form onSubmit={this.login} noValidate="">
+                <input
                     onChange={this.emailChange}
-                    type="email"
-                    errorText={this.state.errorText}
-                    floatingLabelText="Enter your email" />
+                    type="email" />
 
-                <RaisedButton type="submit" onClick={this.login} label="Login" />
+                <button type="submit" onClick={this.login} >Login</button>
             </form>
         );
     }

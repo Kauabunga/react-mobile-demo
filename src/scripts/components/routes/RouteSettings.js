@@ -16,19 +16,25 @@ var RouteSettings = React.createClass({
         return {};
     },
 
-    componentWillReceiveProps: function (nextProps) {
-        if (this.props.isActive === false && nextProps.isActive) {
-            console.log('Reinitialising route', nextProps);
-            this.setState(this.getInitialState());
-        }
-    },
-
 
     render: function () {
+
+
+        var content = [];
+        for(let i = 0; i < 10000; i++){
+            content.push(<div>{'SETTINGS: ' + i}</div>);
+        }
+
         return (
             <div>
                 <p>Content for Settings</p>
                 <Link to="home">Go Home</Link>
+
+
+                <div className="spinner" />
+
+                {content}
+
             </div>
         );
     }

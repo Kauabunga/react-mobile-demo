@@ -63,21 +63,21 @@ var QuickaccessInput = React.createClass({
             <div className="row pininput-container">
                 <div className="pininput">
 
-                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="1"></QuickaccessInputPin>
-                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="2"></QuickaccessInputPin>
-                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="3"></QuickaccessInputPin>
-                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="4"></QuickaccessInputPin>
-                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="5"></QuickaccessInputPin>
-                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="6"></QuickaccessInputPin>
-                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="7"></QuickaccessInputPin>
-                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="8"></QuickaccessInputPin>
-                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="9"></QuickaccessInputPin>
+                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="1" />
+                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="2" />
+                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="3" />
+                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="4" />
+                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="5" />
+                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="6" />
+                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="7" />
+                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="8" />
+                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="9" />
 
-                    <QuickaccessInputForgot></QuickaccessInputForgot>
+                    <QuickaccessInputForgot />
 
-                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="0"></QuickaccessInputPin>
+                    <QuickaccessInputPin onPinClick={this.props.onPinClick} digit="0" />
 
-                    <QuickaccessInputClear></QuickaccessInputClear>
+                    <QuickaccessInputClear />
                 </div>
             </div>
         );
@@ -216,13 +216,13 @@ var FormQuickaccess = React.createClass({
     },
 
     componentWillUnmount: function(){
-        this.props.eventDispatcher.unregister(this.dispatcherRegisterToken);
+        this.props.eventDispatcher.unregister(this.dispatcherLoginRegisterToken);
     },
 
     componentDidMount: function(){
         //can delay this for animation speed
         setTimeout(() => {
-            this.dispatcherRegisterToken = this.props.eventDispatcher.register(this.dispatcherHandle);
+            this.dispatcherLoginRegisterToken = this.props.eventDispatcher.register(this.dispatcherHandle);
         }, 500);
     },
 

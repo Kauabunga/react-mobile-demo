@@ -11,7 +11,7 @@ var FormLogin = require('../auth/FormLogin');
 var FormPreviousLogin = require('../auth/FormPreviousLogin');
 var AuthService = require('../auth/AuthService');
 
-
+var eventRouteLoginNamespace        = 'RouteLogin';
 var eventPreviousLoginNamespace     = 'FormPreviousLogin';
 var eventLoginNamespace             = 'FormLogin';
 var eventOutboundLoginComplete      = 'loginComplete';
@@ -38,7 +38,6 @@ var RouteLogin = React.createClass({
     },
 
     registerLoginEvents: function (payload) {
-
         if (payload.namespace === eventLoginNamespace ||
             payload.namespace === eventPreviousLoginNamespace) {
 
@@ -50,24 +49,41 @@ var RouteLogin = React.createClass({
         }
     },
 
-    componentWillReceiveProps: function(nextProps){
-        if(this.props.isActive === false && nextProps.isActive){
-            console.log('Reinitialising route', nextProps);
-            this.setState(this.getInitialState());
+    registerRenderEvents: function (payload) {
+        if (payload.namespace === eventRouteLoginNamespace &&
+                payload.event === 'renderresponse') {
+
+            console.log('RouteLogin:registerRenderEvents', payload);
+
+            //document.getElementById('route-login').innerHTML = payload.render;
+            //return React.DOM.div({dangerouslySetInnerHTML: {__html: html}});
+
+            setTimeout(() => {
+                //this.setState({webworkerRenderComplete: true, webworkerRenderHtml: payload.render});
+            });
         }
     },
 
     componentWillUnmount: function () {
         setTimeout(() => {
-            dispatcher.unregister(this.dispatcherRegisterToken);
-        }, 500);
+            dispatcher.unregister(this.dispatcherLoginRegisterToken);
+
+            //dispatcher.unregister(this.dispatcherRenderRegisterToken);
+        });
     },
 
 
     componentDidMount: function () {
-        setTimeout(() => {
-            this.dispatcherRegisterToken = dispatcher.register(this.registerLoginEvents);
-        }, 500);
+
+        this.dispatcherLoginRegisterToken = dispatcher.register(this.registerLoginEvents);
+
+
+        //this.dispatcherRenderRegisterToken = dispatcher.register(this.registerRenderEvents);
+        //dispatcher.dispatch({
+        //    namespace: 'RouteLogin',
+        //    event: 'renderrequest'
+        //});
+
     },
 
     getInitialState: function () {
@@ -78,25 +94,36 @@ var RouteLogin = React.createClass({
 
     render: function () {
 
-        return (
-            <div>
-                <FormLogin
-                    eventDispatcher={dispatcher}
-                    eventNamespace={eventLoginNamespace}
-                    eventOutboundLoginComplete={eventOutboundLoginComplete}
-                    eventInboundLoginIncorrect={eventInboundLoginIncorrect}
-                    eventInboundLoginCorrect={eventInboundLoginCorrect}
-                />
-                <FormPreviousLogin
-                    eventDispatcher={dispatcher}
-                    eventNamespace={eventPreviousLoginNamespace}
-                    eventOutboundLoginComplete={eventOutboundLoginComplete}
+        var content = (<div></div>);
 
-                    previousLogins={this.state.previousLogins}
-                />
 
-            </div>
-        );
+
+
+        //if(this.state && this.state.webworkerRenderComplete){
+        //    content = ( <div dangerouslySetInnerHTML={{__html: this.state.webworkerRenderHtml}} />);
+        //}
+        //else if(this.props && this.props.webworkerRender){
+            content = (
+                <div>
+                    <FormLogin
+                        eventDispatcher={dispatcher}
+                        eventNamespace={eventLoginNamespace}
+                        eventOutboundLoginComplete={eventOutboundLoginComplete}
+                        eventInboundLoginIncorrect={eventInboundLoginIncorrect}
+                        eventInboundLoginCorrect={eventInboundLoginCorrect} />
+
+                    <FormPreviousLogin
+                        eventDispatcher={dispatcher}
+                        eventNamespace={eventPreviousLoginNamespace}
+                        eventOutboundLoginComplete={eventOutboundLoginComplete}
+                        previousLogins={this.state.previousLogins} />
+
+
+                </div>
+            );
+        //}
+
+        return content;
     }
 });
 

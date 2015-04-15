@@ -62,17 +62,6 @@ var RouteQuickaccess = React.createClass({
 
     },
 
-    componentWillReceiveProps: function(nextProps){
-        if(this.props.isActive === false && nextProps.isActive){
-            console.log('Reinitialising route', nextProps);
-            this.setState(this.getInitialState());
-            dispatcher.dispatch({
-                namespace: eventNamespace,
-                event: eventInboundPinReset
-            });
-        }
-    },
-
     componentWillMount: function(){
         if( ! this.state.username){
             //TODO need to wait for transition to complete?

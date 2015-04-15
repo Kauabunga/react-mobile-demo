@@ -16,20 +16,23 @@ var RouteHome = React.createClass({
         return {};
     },
 
-    componentWillReceiveProps: function (nextProps) {
-        if (this.props.isActive === false && nextProps.isActive) {
-            console.log('Reinitialising route', nextProps);
-            this.setState(this.getInitialState());
-        }
-    },
-
-
     render: function () {
+
+
+        var dummy = [];
+        for(let i = 0; i < 10000; i++){
+            dummy.push(<div>{'HOME: ' + i}</div>);
+        }
+
         return (
             <div>
                 <p>Content for Home</p>
                 <Link to="login">Go Login</Link>
                 <Link to="settings">Go Settings</Link>
+
+                <div className="spinner" />
+
+                {dummy}
             </div>
         );
     }
